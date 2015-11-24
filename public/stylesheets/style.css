@@ -1,0 +1,24 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.row{
+	margin-right: 0px;
+}
+
+.glyphicon{
+	cursor: pointer;
+}
+
+.glyphicon-thumbs-up{
+	color: green;
+}
+
+.glyphicon-thumbs-down{
+	color: red;
+}
