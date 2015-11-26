@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Flapper Nieuws</title>
-  <link rel="shortcut icon" href="news.ico">
+  <link rel="shortcut icon" href="images/news.ico">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="../stylesheets/style.css" rel="stylesheet">
 </head>
@@ -19,6 +19,7 @@
   <div ng-hide="isLoggedIn()" ng-controller="NavCtrl">
     <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
   </div>
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <ui-view></ui-view>
@@ -70,6 +71,10 @@
     </div>
     <button type="submit" class="btn btn-primary">Post</button>
   </form>
+        <div ng-controller="weerController"> 
+          <h1>Het weer</h1>
+          <weer weerData="weerData"/>
+        </div>
 </script>
 
 <script type="text/ng-template" id="/posts.html">
@@ -176,6 +181,8 @@
 <script src="javascripts/controllers/postController.js"></script>
 <script src="javascripts/controllers/navigationController.js"></script>
 <script src="javascripts/controllers/authenticationController.js"></script>
+<script src="javascripts/controllers/weerController.js"></script>
 <script src="javascripts/config/routes.js"></script>
+<script src="javascripts/factories/weer.js"></script>
 </body>
 </html>

@@ -129,4 +129,54 @@ angular.module('flapperNews', ['ui.router'])
 	};
 
 	return auth;
-}]);
+}])
+ 
+.directive('weer', function ($timeout) {
+  return {
+    restrict: 'AE',
+  replace: true,
+  scope: true,
+    link: function (scope, elem, attrs) {
+  
+    scope.currentIndex=0;
+
+    scope.next=function(){
+      scope.currentIndex<scope.weerData.length-1?scope.currentIndex++:scope.currentIndex=0;
+    };
+    
+    scope.prev=function(){
+      scope.currentIndex>0?scope.currentIndex--:scope.currentIndex=scope.weerData.length-1;
+    };
+    
+    scope.$watch('currentIndex',function(){
+      console.log(scope.weerData);
+      scope.weerData.forEach(function(item){
+        item.visible=false;
+      });
+      scope.weerData[scope.currentIndex].visible=true;
+      console.log(scope.currentIndex + ' ' + scope.weerData[scope.currentIndex]);
+    });
+    
+    /* Start: For Automatic slideshow*/
+    
+    var timer;
+    
+    var sliderFunc=function(){
+      timer=$timeout(function(){
+        scope.next();
+        timer=$timeout(sliderFunc,5000);
+      },5000);
+    };
+    
+    sliderFunc();
+    
+    scope.$on('$destroy',function(){
+      $timeout.cancel(timer);
+    });
+    
+    /* End : For Automatic slideshow*/
+    
+    },
+  template: '<div><div ng-repeat="item in weerData" ng-show="item.visible"><div>{{item.type}}</div></div><a href="#" ng-click="prev()"><img src="/images/left-arrow.png"/></a><a href="#" ng-click="next()"><img src="/images/right-arrow.png"/></a></div>'
+  };
+});

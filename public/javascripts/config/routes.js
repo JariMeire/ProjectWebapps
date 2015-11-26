@@ -11,7 +11,10 @@ angular.module('flapperNews')
       resolve: {
         postPromise: ['posts', function(posts){
           return posts.getAll();
-        }]
+        }],
+          weerPromise: ['weerFactory', function(weerFactory) {
+            return weerFactory.getWeersvoorspellingen();
+          }]
       }
     })
     .state('posts', {
