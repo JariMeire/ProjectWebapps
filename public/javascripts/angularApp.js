@@ -149,7 +149,6 @@ angular.module('flapperNews', ['ui.router'])
     };
     
     scope.$watch('currentIndex',function(){
-      console.log(scope.weerData);
       scope.weerData.forEach(function(item){
         item.visible=false;
       });
@@ -176,6 +175,6 @@ angular.module('flapperNews', ['ui.router'])
     /* End : For Automatic slideshow*/
     
     },
-  template: '<div><div ng-repeat="item in weerData" ng-show="item.visible"><div>{{item.dag}}</div><div>{{item.type}}</div><div>{{item.beschrijving}}</div><div>{{item.temperatuur}}°C</div></div><a href="#" ng-click="prev()"><img src="/images/left-arrow.png"/></a><a href="#" ng-click="next()"><img src="/images/right-arrow.png"/></a></div>'
+  template: '<div id="weer"><div id="gegevens" ng-repeat="item in weerData" ng-show="item.visible" style="background-image: url(/images/{{item.type}}.png);"><div>{{item.dag}}</div><div id="temperatuur">{{item.temperatuur}}°C</div><div id="beschrijving">{{item.beschrijving}}</div></div><div id="pijltjes"><a href="#" ng-click="prev()"><img src="/images/left-arrow.png"/></a><a href="#" ng-click="next()"><img src="/images/right-arrow.png"/></a></div></div>'
   };
 });

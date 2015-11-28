@@ -16,7 +16,6 @@ angular.module('flapperNews')
 
     o.vulDagenOp = function(data){
       for(var i = 0; i < data.length; i++){
-        console.log(data[i]);
         o.dagen.push({
           type: o.zetTypeOm(data[i].weather[0].main),
           beschrijving: o.zetBeschrijvingOm(data[i].weather[0].description),
@@ -47,6 +46,8 @@ angular.module('flapperNews')
           return "af en toe buien";
         case "heavy intensity rain":
           return "zware regenval";
+        case "sky is clear":
+          return "heldere hemel";
         default:
           return beschrijving;
       }

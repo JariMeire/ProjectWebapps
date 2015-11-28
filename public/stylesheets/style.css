@@ -23,11 +23,51 @@ a {
 	color: red;
 }
 
-*{
-font-family: 'Open Sans', sans-serif;
+#weer{
+	text-align: right;
+	color: white;
+	font-weight: bold;
+	font-size: 3em;
+	margin-right: 23%;
+	margin-left: 23%;
 }
-.center-grey{
-       background:#f2f2f2;
+
+#pijltjes{
+	text-align: center;
+}
+
+#pijltjes a{
+	padding-right: 0.5em;
+	padding-left: 0.5em;
+}
+
+#gegevens{
+	border: 2px solid;
+  border-radius: 25px;
+  padding-right: 0.7em;
+}
+
+#temperatuur{
+	font-size: 2.5em;
+}
+
+#beschrijving{
+	font-size: 30px;
+}
+
+.navbar-nav{
+	text-align: center;
+	margin: 0px;
+}
+
+.navbar-nav li{
+	float: left;
+}
+
+.navbar-nav li a{
+	line-height: 30px;
+}
+
 }
 .slider{
 	position: relative;
@@ -74,4 +114,32 @@ color: #222;
  
 .slide.ng-hide-add,.slide.ng-hide-remove.ng-hide-remove-active {
   opacity:1;
+}
+
+@media (max-width: 600px) {
+	#weer{
+		margin: 0px;
+	}
+}
+
+@media (min-width: 601px) {
+	#weer{
+		margin-left: auto;
+		margin-right: auto;
+		width: 500px;
+	}
+}
+
+@media (max-width: 420px) {
+	body{
+		padding: 20px;
+	}
+}
+
+@media (max-width: 991px) {
+	.pull-right{
+		float: right!important;
+		width: 200px;
+		margin-left: 60%;
+	}
 }
