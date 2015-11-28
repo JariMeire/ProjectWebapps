@@ -154,7 +154,6 @@ angular.module('flapperNews', ['ui.router'])
         item.visible=false;
       });
       scope.weerData[scope.currentIndex].visible=true;
-      console.log(scope.currentIndex + ' ' + scope.weerData[scope.currentIndex]);
     });
     
     /* Start: For Automatic slideshow*/
@@ -177,6 +176,6 @@ angular.module('flapperNews', ['ui.router'])
     /* End : For Automatic slideshow*/
     
     },
-  template: '<div><div ng-repeat="item in weerData" ng-show="item.visible"><div>{{item.type}}</div></div><a href="#" ng-click="prev()"><img src="/images/left-arrow.png"/></a><a href="#" ng-click="next()"><img src="/images/right-arrow.png"/></a></div>'
+  template: '<div><div ng-repeat="item in weerData" ng-show="item.visible"><div>{{item.dag}}</div><div>{{item.type}}</div><div>{{item.beschrijving}}</div><div>{{item.temperatuur}}°C</div></div><a href="#" ng-click="prev()"><img src="/images/left-arrow.png"/></a><a href="#" ng-click="next()"><img src="/images/right-arrow.png"/></a></div>'
   };
 });

@@ -7,23 +7,87 @@ angular.module('flapperNews')
     };
 
     o.getWeersvoorspellingen = function() {
-      return $http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=9890&mode=json&units=metric&cnt=5&APPID=1915045e7d99dc089dce5278018d0a13')
+      return $http.get('http://api.openweathermap.org/data/2.5/forecast/daily?q=9890&mode=json&units=metric&cnt=7&APPID=1915045e7d99dc089dce5278018d0a13')
         .success(function(data) {
-          console.log('dagen:' + o.dagen);
-          console.log(data);
-          
           o.dagen.length = 0;
-
-          //angular.copy(data.city, o.dagen);
-          for(var i = 0; i < data.list.length; i++){
-            console.log(data.list[i]);
-            o.dagen.push({
-              type: data.list[i].weather[0].main
-            });
-          }
-          //o.dagen.push(data.city);
-          console.log('dagen:' + o.dagen[0].type);
+          o.vulDagenOp(data.list);
         });
+    };
+
+    o.vulDagenOp = function(data){
+      for(var i = 0; i < data.length; i++){
+        console.log(data[i]);
+        o.dagen.push({
+          type: o.zetTypeOm(data[i].weather[0].main),
+          beschrijving: o.zetBeschrijvingOm(data[i].weather[0].description),
+          temperatuur: o.bepaalTemperatuur(data[i].temp.min, data[i].temp.max),
+          dag: o.bepaalDag(data[i].dt, i)
+        });
+      }
+    };
+
+    o.zetTypeOm = function(type){
+      switch(type){
+        case "Rain":
+          return "Regen";
+        case "Cloudy":
+          return "Bewolkt";
+        case "Clear":
+          return "Helder";
+        default:
+          return type;
+      }
+    };
+
+    o.zetBeschrijvingOm = function(beschrijving){
+      switch(beschrijving){
+        case "light rain":
+          return "lichte regen";
+        case "moderate rain":
+          return "af en toe buien";
+        case "heavy intensity rain":
+          return "zware regenval";
+        default:
+          return beschrijving;
+      }
+    };
+
+    o.bepaalTemperatuur = function(min, max){
+      var temperatuur = (min + max) / 2;
+      return Math.round(temperatuur);
+    };
+
+    o.bepaalDag = function(tijd, teller){
+      if(teller === 0){
+        return "Vandaag";
+      } else if(teller === 1){
+        return "Morgen";
+      } else{
+        var datum = new Date(tijd * 1000);
+        var dag = datum.getDay();
+        return o.dagToString(dag);
+      }
+    };
+
+    o.dagToString = function(dag){
+      switch(dag){
+        case 0:
+          return "Zondag";
+        case 1:
+          return "Maandag";
+        case 2:
+          return "Dinsdag";
+        case 3:
+          return "Woensdag";
+        case 4:
+          return "Donderdag";
+        case 5:
+          return "Vrijdag";
+        case 6:
+          return "Zaterdag";
+        default:
+          return dag;
+      }
     };
 
   return o;
