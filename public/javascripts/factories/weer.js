@@ -29,7 +29,7 @@ angular.module('flapperNews')
       switch(type){
         case "Rain":
           return "Regen";
-        case "Cloudy":
+        case "Clouds":
           return "Bewolkt";
         case "Clear":
           return "Helder";
@@ -48,6 +48,8 @@ angular.module('flapperNews')
           return "zware regenval";
         case "sky is clear":
           return "heldere hemel";
+        case "broken clouds":
+          return "bewolkt";
         default:
           return beschrijving;
       }

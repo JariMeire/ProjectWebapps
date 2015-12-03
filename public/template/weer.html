@@ -1,0 +1,15 @@
+<div id="weer">
+	<div id="gegevens" ng-repeat="item in weerData" ng-show="item.visible" style="background-image: url(/images/{{item.type}}.png);">
+		<div>{{item.dag}}</div>
+		<div id="temperatuur">{{item.temperatuur}}°C</div>
+		<div id="beschrijving">{{item.beschrijving}}</div>
+	</div>
+	<div id="pijltjes">
+		<a href="#" ng-click="prev()">
+			<img src="/images/links.png"/>
+		</a>
+		<a href="#" ng-click="next()">
+			<img src="/images/rechts.png"/>
+		</a>
+	</div>
+</div>
