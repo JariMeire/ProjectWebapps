@@ -6,6 +6,7 @@ var request = require('supertest');
 //om requests te sturen naar de applicatie
 var agent = request.agent(app);
 
+
 describe('GET /posts', function(){
 	it('should respond with 200 in case of valid request', function(done){
 		agent.get('/posts')

@@ -4,6 +4,7 @@
   <title>Flapper Nieuws</title>
   <link rel="shortcut icon" href="images/news.ico">
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link href="../stylesheets/style.css" rel="stylesheet">
 </head>
 <body ng-app="flapperNews">
@@ -19,7 +20,7 @@
   <br>
   <br>
   <div ng-hide="isLoggedIn()" ng-controller="NavCtrl">
-    <h3>You need to <a href="/#/login">Log In</a> or <a href="/#/register">Register</a> before you can add a post.</h3>
+    <h3>Je moet je eerst <a href="/#/login">aanmelden</a> of <a href="/#/register">registreren</a> om te stemmen en om een post of commentaar toe te voegen.</h3>
   </div>
 
   <div class="row">
@@ -28,151 +29,6 @@
     </div>
   </div>
 
-  <script type="text/ng-template" id="/home.html">
-    <div class="page-header">
-      <h1>Flapper News</h1>
-    </div>     
-
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
-      <span class="glyphicon glyphicon-thumbs-up"
-      ng-click="incrementUpvotes(post)"></span>
-      <span class="glyphicon glyphicon-thumbs-down"
-      ng-click="decreaseUpvotes(post)"></span>
-      {{post.upvotes}}
-      <span style="font-size:20px; margin-left:10px;">
-        <a ng-show="post.link" href="{{post.link}}" target="_blank">
-          {{post.title}}
-        </a>
-        <span ng-hide="post.link">
-          {{post.title}}
-        </span>
-      </span>
-      <span ng-show="post.author">
-        posted by <a>{{post.author}}</a> |
-      </span>
-      <span>
-        <a href="#/posts/{{post._id}}">Comments</a>
-      </span>
-    </div>
-
-    <form ng-submit="addPost()" ng-show="isLoggedIn()"
-    style="margin-top:30px;">
-    <h3>Add a new post</h3>
-
-    <div class="form-group">
-      <input type="text"
-      class="form-control"
-      placeholder="Title"
-      ng-model="title"/>
-    </div>
-    <div class="form-group">
-      <input type="text"
-      class="form-control"
-      placeholder="Link"
-      ng-model="link"/>
-    </div>
-    <button type="submit" class="btn btn-primary">Post</button>
-  </form>
-        <div ng-controller="weerController"> 
-          <h1>Het weer</h1>
-          <weer weerData="weerData"/>
-        </div>
-</script>
-
-<script type="text/ng-template" id="/posts.html">
-  <div class="page-header">
-    <h3>
-      <a ng-show="post.link" href="{{post.link}}" target="_blank">
-        {{post.title}}
-      </a>
-      <span ng-hide="post.link">
-        {{post.title}}
-      </span>
-    </h3>
-  </div>
-
-  <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-    <span class="glyphicon glyphicon-thumbs-up"
-    ng-click="incrementUpvotes(comment)"></span>
-    <span class="glyphicon glyphicon-thumbs-down"
-    ng-click="decreaseUpvotes(comment)"></span>
-    {{comment.upvotes}} - by {{comment.author}}
-    <span style="font-size:20px; margin-left:10px;">
-      {{comment.body}}
-    </span>
-  </div>
-  
-  <form ng-submit="addComment()" ng-show="isLoggedIn()"
-  style="margin-top:30px;">
-  <h3>Add a new comment</h3>
-
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
-    placeholder="Comment"
-    ng-model="body"/>
-  </div>
-  <button type="submit" class="btn btn-primary">Post</button>
-</form>
-</script>
-
-<script type="text/ng-template" id="/register.html">
-  <div class="page-header">
-    <h1>Flapper News</h1>
-  </div>
-
-  <div ng-show="error" class="alert alert-danger row">
-    <span>{{ error.message }}</span>
-  </div>
-
-  <form ng-submit="register()"
-  style="margin-top:30px;">
-  <h3>Register</h3>
-
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
-    placeholder="Username"
-    ng-model="user.username"></input>
-  </div>
-  <div class="form-group">
-    <input type="password"
-    class="form-control"
-    placeholder="Password"
-    ng-model="user.password"></input>
-  </div>
-  <button type="submit" class="btn btn-primary">Register</button>
-</form>
-</script>
-
-<script type="text/ng-template" id="/login.html">
-  <div class="page-header">
-    <h1>Flapper News</h1>
-  </div>
-
-  <div ng-show="error" class="alert alert-danger row">
-    <span>{{ error.message }}</span>
-  </div>
-
-  <form ng-submit="logIn()"
-  style="margin-top:30px;">
-  <h3>Log In</h3>
-
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
-    placeholder="Username"
-    ng-model="user.username"></input>
-  </div>
-  <div class="form-group">
-    <input type="password"
-    class="form-control"
-    placeholder="Password"
-    ng-model="user.password"></input>
-  </div>
-  <button type="submit" class="btn btn-primary">Log In</button>
-</form>
-</script>
 
 <!-- External dependencies -->
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
@@ -186,5 +42,8 @@
 <script src="javascripts/controllers/weerController.js"></script>
 <script src="javascripts/config/routes.js"></script>
 <script src="javascripts/factories/weer.js"></script>
+<script src="javascripts/factories/authenticationFactory.js"></script>
+<script src="javascripts/factories/postFactory.js"></script>
+<script src="javascripts/directive/directive.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@ angular.module('flapperNews')
     $stateProvider
     .state('home', {
       url: '/home',
-      templateUrl: '/home.html',
+      templateUrl: '/template/home.html',
       controller: 'MainCtrl',
       resolve: {
         postPromise: ['posts', function(posts){
@@ -19,7 +19,7 @@ angular.module('flapperNews')
     })
     .state('posts', {
       url: '/posts/{id}',
-      templateUrl: '/posts.html',
+      templateUrl: '/template/posts.html',
       controller: 'PostCtrl',
       resolve: {
         post: ['$stateParams', 'posts', function($stateParams, posts) {
@@ -29,7 +29,7 @@ angular.module('flapperNews')
     })
     .state('login', {
       url: '/login',
-      templateUrl: '/login.html',
+      templateUrl: '/template/login.html',
       controller: 'AuthCtrl',
       onEnter: ['$state', 'auth', function($state, auth){
         if(auth.isLoggedIn()){
@@ -39,7 +39,7 @@ angular.module('flapperNews')
     })
     .state('register', {
       url: '/register',
-      templateUrl: '/register.html',
+      templateUrl: '/template/register.html',
       controller: 'AuthCtrl',
       onEnter: ['$state', 'auth', function($state, auth){
         if(auth.isLoggedIn()){

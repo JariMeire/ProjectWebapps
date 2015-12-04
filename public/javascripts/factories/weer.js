@@ -50,6 +50,8 @@ angular.module('flapperNews')
           return "heldere hemel";
         case "broken clouds":
           return "bewolkt";
+        case "overcast clouds":
+          return "zwaar bewolkt";
         default:
           return beschrijving;
       }

@@ -25,6 +25,5 @@ angular.module('flapperNews')
     $scope.incrementUpvotes = posts.upvote;
     $scope.decreaseUpvotes = posts.downvote;
 
-
   }
 ]);
