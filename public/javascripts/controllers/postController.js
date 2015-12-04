@@ -21,13 +21,16 @@ angular.module('flapperNews')
       $scope.body = '';
     };
     
-    $scope.incrementUpvotes = function(comment){
+    /*$scope.incrementUpvotes = function(comment){
       posts.upvoteComment(post, comment);
     };
 
     $scope.decreaseUpvotes = function(comment){
       posts.downvoteComment(post, comment);
-    };
+    };*/
+
+    $scope.incrementUpvotes = posts.upvoteComment;
+    $scope.decreaseUpvotes = posts.downvoteComment;
     
   }
 ]);

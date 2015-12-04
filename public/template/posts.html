@@ -8,27 +8,18 @@
       </span>
     </h3>
   </div>
-
   <div ng-repeat="comment in post.comments | orderBy:'-upvotes'">
-    <span class="glyphicon glyphicon-thumbs-up"
-    ng-click="incrementUpvotes(comment)"></span>
-    <span class="glyphicon glyphicon-thumbs-down"
-    ng-click="decreaseUpvotes(comment)"></span>
+    <span ng-click="incrementUpvotes(post, comment)" class="hvr-bob"><i class="fa fa-thumbs-o-up fa-2x"></i></span>
+    <span ng-click="decreaseUpvotes(post, comment)" class="hvr-hang"><i class="fa fa-thumbs-o-down fa-2x"></i></span>
     {{comment.upvotes}} - by {{comment.author}}
     <span style="font-size:20px; margin-left:10px;">
       {{comment.body}}
     </span>
   </div>
-  
-  <form ng-submit="addComment()" ng-show="isLoggedIn()"
-  style="margin-top:30px;">
+  <form ng-submit="addComment()" ng-show="isLoggedIn()" style="margin-top:30px;">
   <h3>Voeg commentaar toe</h3>
-
   <div class="form-group">
-    <input type="text"
-    class="form-control"
-    placeholder="Comment"
-    ng-model="body"/>
+    <input type="text" class="form-control" placeholder="Commentaar" ng-model="body"/>
   </div>
   <button type="submit" class="btn btn-primary">Post</button>
 </form>

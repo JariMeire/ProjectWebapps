@@ -1,49 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Flapper Nieuws</title>
-  <link rel="shortcut icon" href="images/news.ico">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link href="../stylesheets/style.css" rel="stylesheet">
-</head>
-<body ng-app="flapperNews">
-  <nav class="navbar navbar-default pull-right" ng-controller="NavCtrl">
-    <ul class="nav navbar-nav">
-      <li><a href="/#/home">Home</a></li>
-      <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-      <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Afmelden</a></li>
-      <li ng-hide="isLoggedIn()"><a href="/#/login">Aanmelden</a></li>
-      <li ng-hide="isLoggedIn()"><a href="/#/register">Registreren</a></li>
-    </ul>
-  </nav>
-  <br>
-  <br>
-  <div ng-hide="isLoggedIn()" ng-controller="NavCtrl">
-    <h3>Je moet je eerst <a href="/#/login">aanmelden</a> of <a href="/#/register">registreren</a> om te stemmen en om een post of commentaar toe te voegen.</h3>
-  </div>
-
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <ui-view></ui-view>
+  <head>
+    <title>Flapper Nieuws</title>
+    <link rel="shortcut icon" href="images/news.ico">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="../stylesheets/style.css" rel="stylesheet">
+  </head>
+  <body ng-app="flapperNews">
+    <div id="navigation">
+      <nav ng-controller="NavCtrl" >
+        <ul>
+          <li><a href="/#/home">Home</a></li>
+          <li ng-show="isLoggedIn()"><a>Hallo, {{ currentUser() }}</a></li>
+          <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Afmelden</a></li>
+          <li ng-hide="isLoggedIn()"><a href="/#/login">Aanmelden</a></li>
+          <li ng-hide="isLoggedIn()"><a href="/#/register">Registreren</a></li>
+        </ul>
+      </nav>
     </div>
-  </div>
-
+    <div ng-hide="isLoggedIn()" ng-controller="NavCtrl" id="waarschuwing">
+      <h3>Je moet je eerst <a href="/#/login">aanmelden</a> of <a href="/#/register">registreren</a> om te stemmen en om een post of commentaar toe te voegen.</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <ui-view></ui-view> 
+      </div>
+    </div>
 
 <!-- External dependencies -->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
 <!-- Own JS files -->
-<script src="javascripts/angularApp.js"></script>
-<script src="javascripts/controllers/mainController.js"></script>
-<script src="javascripts/controllers/postController.js"></script>
-<script src="javascripts/controllers/navigationController.js"></script>
-<script src="javascripts/controllers/authenticationController.js"></script>
-<script src="javascripts/controllers/weerController.js"></script>
-<script src="javascripts/config/routes.js"></script>
-<script src="javascripts/factories/weer.js"></script>
-<script src="javascripts/factories/authenticationFactory.js"></script>
-<script src="javascripts/factories/postFactory.js"></script>
-<script src="javascripts/directive/directive.js"></script>
-</body>
+    <script src="javascripts/angularApp.js"></script>
+    <script src="javascripts/controllers/mainController.js"></script>
+    <script src="javascripts/controllers/postController.js"></script>
+    <script src="javascripts/controllers/navigationController.js"></script>
+    <script src="javascripts/controllers/authenticationController.js"></script>
+    <script src="javascripts/controllers/weerController.js"></script>
+    <script src="javascripts/config/routes.js"></script>
+    <script src="javascripts/factories/weer.js"></script>
+    <script src="javascripts/factories/authenticationFactory.js"></script>
+    <script src="javascripts/factories/postFactory.js"></script>
+    <script src="javascripts/directive/directive.js"></script>
+  </body>
 </html>

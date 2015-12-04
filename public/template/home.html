@@ -3,8 +3,8 @@
 </div>     
 
 <div ng-repeat="post in posts | orderBy:'-upvotes'">
-  <span ng-click="incrementUpvotes(post)"><i class="fa fa-thumbs-o-up fa-2x"></i></span>
-  <span ng-click="decreaseUpvotes(post)"><i class="fa fa-thumbs-o-down fa-2x"></i></span>
+  <span ng-click="incrementUpvotes(post)" class="hvr-bob"><i class="fa fa-thumbs-o-up fa-2x"></i></span>
+  <span ng-click="decreaseUpvotes(post)" class="hvr-hang"><i class="fa fa-thumbs-o-down fa-2x"></i></span>
   {{post.upvotes}}
   <span style="font-size:20px; margin-left:10px;">
     <a ng-show="post.link" href="{{post.link}}" target="_blank">
@@ -23,10 +23,10 @@
 </div>
 
 <form ng-submit="addPost()" ng-show="isLoggedIn()" style="margin-top:30px;">
-<h3>Add a new post</h3>
+<h3>Voeg een post toe</h3>
 
 <div class="form-group">
-  <input type="text" class="form-control" placeholder="Title" ng-model="title"/>
+  <input type="text" class="form-control" placeholder="Titel" ng-model="title"/>
 </div>
 <div class="form-group">
   <input type="text" class="form-control" placeholder="Link" ng-model="link"/>
